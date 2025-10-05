@@ -13,7 +13,5 @@
 .jupyter/*
 .local/*
 .npm/*
-artifacts/*
-artifacts/*
 iris_classifier/*
 iris_model.joblib
