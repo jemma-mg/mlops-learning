@@ -15,3 +15,4 @@ iris_classifier/*
 iris_model.joblib
 data/*
 artifacts/*
+!data/**/*.dvc
