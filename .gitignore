@@ -13,3 +13,5 @@
 .npm/*
 iris_classifier/*
 iris_model.joblib
+data/*
+artifacts/*
