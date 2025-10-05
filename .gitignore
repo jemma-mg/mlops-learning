@@ -1,0 +1,15 @@
+.bashrc
+.gitconfig
+.viminfo
+.cache/*
+.config/*
+.docker/*
+.gitconfig/*
+.gsutil/*
+.ipynb_checkpoints/*
+.ipython/*
+.jupyter/*
+.local/*
+.npm/*
+iris_classifier/*
+iris_model.joblib
