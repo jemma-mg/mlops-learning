@@ -8,9 +8,8 @@
 .gsutil/*
 .ipynb_checkpoints/*
 .ipython/*
+*/.ipynb_checkpoints/*
+*/.ipython/*
 .jupyter/*
 .local/*
 .npm/*
-iris_classifier/*
-iris_model.joblib
-artifacts/*
