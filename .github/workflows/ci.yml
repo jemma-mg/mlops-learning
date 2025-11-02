@@ -85,7 +85,7 @@ jobs:
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          pip install cml
+          npm install -g @dvcorg/cml
           if [ "${{ github.event_name }}" = "pull_request" ]; then
             cml comment create report.md
           else
