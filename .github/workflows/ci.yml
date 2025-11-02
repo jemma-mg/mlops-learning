@@ -81,9 +81,14 @@ jobs:
           echo "\`\`\`" >> report.md
       
       - name: Post test report to PR using CML
-        if: github.event.pull_request != null
+        if: always()
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           pip install cml
-          cml comment create report.md
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            cml comment create report.md
+          else
+            echo "Not a pull request — skipping comment."
+          fi
+          
