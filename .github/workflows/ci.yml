@@ -52,8 +52,6 @@ jobs:
           
       - name: Pull data & model from DVC remote
         run: |
-          # echo "${{ secrets.GCP_MLOPS_STORAGE_ACCESS_KEY }}" > gcp-key.json
-          # export GOOGLE_APPLICATION_CREDENTIALS=gcp-key.json
           dvc pull
           dvc checkout
 
