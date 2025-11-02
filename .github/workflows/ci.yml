@@ -39,14 +39,16 @@ jobs:
           pip install --upgrade setuptools wheel
           pip install -r requirements.txt
 
-    
-      # - name: Install dependencies
-      #   run: |
-      #     pip install -r requirements.txt
-      #     pip install dvc[gdrive] pytest cml joblib scikit-learn pandas
-
+      - name: Authenticate to Google Cloud
+        run: |
+          echo "${{ secrets.GCP_MLOPS_STORAGE_ACCESS_KEY }}" > gcp-key.json
+          gcloud auth activate-service-account --key-file=gcp-key.json
+          gcloud config set project mlops-sept25
+          
       - name: Pull data & model from DVC remote
         run: |
+          echo "${{ secrets.GCP_MLOPS_STORAGE_ACCESS_KEY }}" > gcp-key.json
+          export GOOGLE_APPLICATION_CREDENTIALS=gcp-key.json
           dvc pull
           dvc checkout
 
