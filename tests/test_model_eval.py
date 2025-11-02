@@ -7,7 +7,7 @@ def test_model_accuracy():
     eval_df = pd.read_csv("data/v2/data_augmented.csv")
     X_eval = eval_df[['sepal_length','sepal_width','petal_length','petal_width']]
     y_true = eval_df['species']
-    model = joblib.load("artifacts/latest/iris_model.joblib")  # Or your timestamped folder
+    model = joblib.load("artifacts/20251005-003900/iris_model_v1.joblib")
     preds = model.predict(X_eval)
 
     acc = metrics.accuracy_score(y_true, preds)
