@@ -5,6 +5,8 @@ on:
     branches: [ main, dev ]
   pull_request:
     branches: [ main, dev ]
+  pull_request_target:
+    branches: [main, dev]
 
 jobs:
   test:
@@ -79,15 +81,22 @@ jobs:
           echo "\`\`\`xml" >> report.md
           cat results.xml >> report.md
           echo "\`\`\`" >> report.md
-      
+
       - name: Post test report to PR using CML
-        if: always()
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           npm install -g @dvcorg/cml
-          if [ "${{ github.event_name }}" = "pull_request" ] || [ "${{ github.event_name }}" = "push" ]; then
-            cml comment create report.md
-          else
-            echo "Not a pull request — skipping comment."
-          fi
+          cml comment create report.md
+      
+      # - name: Post test report to PR using CML
+      #   if: always()
+      #   env:
+      #     REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   run: |
+      #     npm install -g @dvcorg/cml
+      #     if [ "${{ github.event_name }}" = "pull_request" ] || [ "${{ github.event_name }}" = "push" ]; then
+      #       cml comment create report.md
+      #     else
+      #       echo "Not a pull request — skipping comment."
+      #     fi
