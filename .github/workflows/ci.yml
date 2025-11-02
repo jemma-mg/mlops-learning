@@ -79,19 +79,11 @@ jobs:
           echo "\`\`\`xml" >> report.md
           cat results.xml >> report.md
           echo "\`\`\`" >> report.md
-
-      - name: Debug PR context
-        if: github.event_name == 'pull_request'
-        run: |
-          echo "Event: ${{ github.event_name }}"
-          echo "PR Number: ${{ github.event.pull_request.number }}"
-
+      
       - name: Post test report to PR using CML
-        if: github.event_name == 'pull_request'
+        if: github.event.pull_request != null
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           pip install cml
           cml comment create report.md
-
-
