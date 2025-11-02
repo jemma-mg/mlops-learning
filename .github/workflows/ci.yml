@@ -64,11 +64,34 @@ jobs:
       #     pytest tests/test_data_validation.py --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
       #     pytest tests/test_model_eval.py --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
 
+      # - name: Post test report to PR using CML
+      #   if: github.event_name == 'pull_request'
+      #   env:
+      #     REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   run: |
+      #     pip install cml
+      #     cml comment create results.xml
+
+      - name: Convert test results to Markdown
+        run: |
+          echo "## 🧪 Test Report" > report.md
+          echo "Posted at $(date)" >> report.md
+          echo "\`\`\`xml" >> report.md
+          cat results.xml >> report.md
+          echo "\`\`\`" >> report.md
+
+      - name: Debug PR context
+        if: github.event_name == 'pull_request'
+        run: |
+          echo "Event: ${{ github.event_name }}"
+          echo "PR Number: ${{ github.event.pull_request.number }}"
+
       - name: Post test report to PR using CML
         if: github.event_name == 'pull_request'
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           pip install cml
-          cml comment create results.xml
+          cml comment create report.md
+
 
