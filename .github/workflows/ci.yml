@@ -5,6 +5,8 @@ on:
     branches: [ main, dev ]
   pull_request:
     branches: [ main, dev ]
+  pull_request_target:
+    branches: [ main, dev ]
 
 jobs:
   test:
@@ -89,7 +91,8 @@ jobs:
         run: |
           npm install -g @dvcorg/cml
           if [ "${{ github.event_name }}" = "pull_request" ] || [ "${{ github.event_name }}" = "push" ]; then
-            cml comment create report.md --target=pr/${{ github.event.number }}
+            cml comment create report.md --target=pr/${{ github.event.pull_request.number }}
+
           else
             echo "Not a pull request — skipping comment."
           fi
