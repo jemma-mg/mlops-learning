@@ -41,7 +41,9 @@ jobs:
 
       - name: Authenticate to Google Cloud
         run: |
-          echo "${{ secrets.GCP_MLOPS_STORAGE_ACCESS_KEY }}" > gcp-key.json
+          cat <<EOF > gcp-key.json
+          ${{ secrets.GCP_MLOPS_STORAGE_ACCESS_KEY }}
+          EOF
           gcloud auth activate-service-account --key-file=gcp-key.json
           gcloud config set project mlops-sept25
           
