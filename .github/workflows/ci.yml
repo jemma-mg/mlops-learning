@@ -86,9 +86,8 @@ jobs:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           npm install -g @dvcorg/cml
-          if [ "${{ github.event_name }}" = "pull_request" || "${{ github.event_name }}" = "push" ]; then
+          if [ "${{ github.event_name }}" = "pull_request" ] || [ "${{ github.event_name }}" = "push" ]; then
             cml comment create report.md
           else
             echo "Not a pull request — skipping comment."
           fi
-          
