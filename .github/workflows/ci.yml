@@ -74,20 +74,20 @@ jobs:
       #     pip install cml
       #     cml comment create results.xml
 
-      - name: Convert test results to Markdown
-        run: |
-          echo "## 🧪 Test Report" > report.md
-          echo "Posted at $(date)" >> report.md
-          echo "\`\`\`xml" >> report.md
-          cat results.xml >> report.md
-          echo "\`\`\`" >> report.md
+      # - name: Convert test results to Markdown
+      #   run: |
+      #     echo "## 🧪 Test Report" > report.md
+      #     echo "Posted at $(date)" >> report.md
+      #     echo "\`\`\`xml" >> report.md
+      #     cat results.xml >> report.md
+      #     echo "\`\`\`" >> report.md
 
       - name: Post test report to PR using CML
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           npm install -g @dvcorg/cml
-          cml comment create report.md
+          cml comment create results.xml
       
       # - name: Post test report to PR using CML
       #   if: always()
