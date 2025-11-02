@@ -89,7 +89,7 @@ jobs:
         run: |
           npm install -g @dvcorg/cml
           if [ "${{ github.event_name }}" = "pull_request" ] || [ "${{ github.event_name }}" = "push" ]; then
-            cml comment create report.md
+            cml comment create report.md --pr "${{ github.event.pull_request.number }}"
           else
             echo "Not a pull request — skipping comment."
           fi
