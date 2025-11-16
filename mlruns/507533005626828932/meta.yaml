@@ -1,0 +1,6 @@
+artifact_location: file:///home/jupyter/mlruns/507533005626828932
+creation_time: 1763310773791
+experiment_id: '507533005626828932'
+last_update_time: 1763310773791
+lifecycle_stage: active
+name: iris-poisoning-logreg
