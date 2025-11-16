@@ -1,0 +1,14 @@
+artifact_uri: file:///home/jupyter/mlruns/507533005626828932/e79438e05467485e880882b47483f1d6/artifacts
+end_time: 1763310792842
+entry_point_name: ''
+experiment_id: '507533005626828932'
+lifecycle_stage: active
+run_id: e79438e05467485e880882b47483f1d6
+run_name: poison_50pct
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1763310788881
+status: 3
+tags: []
+user_id: jupyter
